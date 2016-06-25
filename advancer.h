@@ -3,17 +3,17 @@ void advancer(std::vector<int> &vectr, int days, int shifts, int nurses, int** c
 	std::vector<int>::iterator aux=vectr.begin();
 	std::vector<int>::iterator fin=vectr.end();
 	fin--;
-	int start = clock();
+	std::clock_t start = clock();
 	bool backjump=false;
 	int act_pos=0;
 	for(int i=days*nurses; i>position; i--){
 		vectr[i]=0;
 	}
 	while(aux!=vectr.end()){
-		for (int j=0; j<nurses*days; j++){
+		/*for (int j=0; j<nurses*days; j++){
 			cout << vectr[j] <<" ";
-		}
-		cout<<endl;
+		}*/
+		//cout<<endl;
 		if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && (*aux==0)){
 			*aux=shifts;
 			backjump=false;
@@ -72,6 +72,9 @@ void advancer(std::vector<int> &vectr, int days, int shifts, int nurses, int** c
 					}
 				}
 			}
+		}
+		if ((clock()-start)/double(CLOCKS_PER_SEC)>300){
+			return;
 		}
 		/*for (int j=0; j<nurses*days; j++){
 			cout << vectr[j] <<" ";

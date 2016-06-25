@@ -38,7 +38,7 @@ void backtracker(int* array, int shifts, int iterator, int len){
 
 int main(int argc, char* argv[])
 {
-	int start_s=clock();
+	std::clock_t start_s=clock();
 	std::vector<int>input;
 	int n;
 	int p=3;		//el indice del input en que comienza la matriz de cobertura.
@@ -150,13 +150,13 @@ int main(int argc, char* argv[])
 	bool cobertura_actual=revisar_cobertura(min_nurses2, variables, days, shifts, nurses);
 		//variables[0]=4;
  	advancer(variables, days, shifts, nurses, min_nurses2, rango_dias_totales, rango_dias_consecutivos, 0);
- 	int stop_s=clock();
+ 	std::clock_t stop_s=clock();
  	for (int j=0; j<days; j++){
 		for (int i=0; i<nurses; i++){
 			cout << variables[i+j] <<" ";
 		}
 		cout<<endl;
 	}
-	cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
+	cout << "time: " << (stop_s - start_s)/double(CLOCKS_PER_SEC) << endl;
     return 0;
 }
