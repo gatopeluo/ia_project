@@ -56,6 +56,7 @@ int min_days(std::vector<int> vectr , int* rango_total, int nurses, int days, in
 	}
 	for (int i=0; i<nurses; i++){
 		if (contador[i]<rango_total[0]){
+			delete [] contador;
 			return (i+1);
 		}
 	}
@@ -76,6 +77,7 @@ int max_days(std::vector<int> vectr , int* rango_total, int nurses, int days, in
 	}
 	for (int i=0; i<nurses; i++){
 		if (contador[i]>rango_total[1]){
+			delete [] contador;
 			return i+1;
 		}
 	}

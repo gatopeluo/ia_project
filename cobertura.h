@@ -1,4 +1,4 @@
-bool revisar_cobertura(int** cobertura, std::vector<int> variables, int day, int shifts, int nurses){
+bool revisar_cobertura(int** &cobertura, std::vector<int> &variables, int day, int shifts, int nurses){
 	int* aux= new int [shifts];
 	for(int i=0; i<=shifts; i++){
 		aux[i]=0;
@@ -24,11 +24,20 @@ bool revisar_cobertura(int** cobertura, std::vector<int> variables, int day, int
 			}
 		}
 	}
+	delete [] aux;
 	for(int i=0; i<day; i++){
 		for(int j=0; j<shifts; j++){
 			if (cobertura[i][j]<=aux2[i][j]) aux1++;
 		}
 	}
-	if(aux1==day*shifts) return true;
+	for(int i=0; i<day; i++){
+		delete [] aux2[i];
+	}
+	delete [] aux2;
+
+	if(aux1==day*shifts){
+		
+		return true;
+	}
 	return false;
 }
