@@ -7,6 +7,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 	bool backjump=false;
 	int act_pos=0;
 	std::vector<int> variables;
+	variables.reserve(nurses*days+1);
 	for(int i=days*nurses; i>position; i--){
 		vectr[i]=0;
 	}
@@ -26,10 +27,10 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				if (*aux<shifts-1){
 					(*aux)++;
 					backjump=false;
-					if (max_days(vectr, rango_total, nurses, days, shifts)!=0){
+					/*if (max_days(vectr, rango_total, nurses, days, shifts)!=0){
 						*aux=shifts;
 						aux++;
-					}
+					}*/
 				}else if((*aux)==shifts-1){
 					(*aux)=0;
 					aux--;
@@ -74,7 +75,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				}
 			}
 		}
-		if ((clock()-start)/double(CLOCKS_PER_SEC)>300){
+		if ((clock()-start)/double(CLOCKS_PER_SEC)>60){
 			for (int j=0; j<nurses*days; j++){
 				cout << vectr[j] <<" ";
 				variables.push_back(vectr[j]);

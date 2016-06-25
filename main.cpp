@@ -61,7 +61,8 @@ int main(int argc, char* argv[])
 	
 //definicion de variables
 //usamos variables binarias x_{ijk}, para la enfermera que trabaja en un turno en un dia
-	std::vector<int> variables;	
+	std::vector<int> variables;
+	variables.reserve(nurses*days+1);	
 	for(int i=0; i<nurses*days; i++){
 		variables.push_back(0);
 	}
