@@ -149,13 +149,13 @@ int main(int argc, char* argv[])
 	*/
 	bool cobertura_actual=revisar_cobertura(min_nurses2, variables, days, shifts, nurses);
 		//variables[0]=4;
- 	advancer(variables, days, shifts, nurses, min_nurses2, rango_dias_totales, rango_dias_consecutivos, 0);
+ 	std::vector<int> solucion=advancer(variables, days, shifts, nurses, min_nurses2, rango_dias_totales, rango_dias_consecutivos, 0);
  	std::clock_t stop_s=clock();
- 	for (int j=0; j<days; j++){
-		for (int i=0; i<nurses; i++){
-			cout << variables[i+j] <<" ";
+ 	for (int j=0; j<solucion.size(); j++){
+		cout << solucion[j] <<" ";
+		if ((j+1)%nurses==0){
+			cout << endl;
 		}
-		cout<<endl;
 	}
 	cout << "time: " << (stop_s - start_s)/double(CLOCKS_PER_SEC) << endl;
     return 0;

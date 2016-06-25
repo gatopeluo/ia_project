@@ -1,11 +1,12 @@
 using namespace std;
-void advancer(std::vector<int> &vectr, int days, int shifts, int nurses, int** cobertura, int* rango_total, int* rango_consec, int position){
+std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nurses, int** cobertura, int* rango_total, int* rango_consec, int position){
 	std::vector<int>::iterator aux=vectr.begin();
 	std::vector<int>::iterator fin=vectr.end();
 	fin--;
 	std::clock_t start = clock();
 	bool backjump=false;
 	int act_pos=0;
+	std::vector<int> variables;
 	for(int i=days*nurses; i>position; i--){
 		vectr[i]=0;
 	}
@@ -74,11 +75,20 @@ void advancer(std::vector<int> &vectr, int days, int shifts, int nurses, int** c
 			}
 		}
 		if ((clock()-start)/double(CLOCKS_PER_SEC)>300){
-			return;
+			for (int j=0; j<nurses*days; j++){
+				cout << vectr[j] <<" ";
+				variables.push_back(vectr[j]);
+			}
+			cout << endl;
+			return variables;
 		}
 		/*for (int j=0; j<nurses*days; j++){
 			cout << vectr[j] <<" ";
 		}
 		cout<<endl;*/		
 	}
+	for (int j=0; j<nurses*days; j++){
+		variables.push_back(vectr[j]);
+	}
+	return variables;
 }
