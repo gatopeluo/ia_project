@@ -75,7 +75,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				}
 			}
 		}
-		if ((clock()-start)/double(CLOCKS_PER_SEC)>60){
+		if ((clock()-start)/double(CLOCKS_PER_SEC)>120){
 			for (int j=0; j<nurses*days; j++){
 				cout << vectr[j] <<" ";
 				variables.push_back(vectr[j]);
