@@ -17,11 +17,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 		//cout<<endl;
 		if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && (*aux==0)){
 			*aux=shifts;
-			backjump=false;
-			/*if (max_days(vectr, rango_total, nurses, days, shifts)!=0){
-				cout <<max_days(vectr, rango_total, nurses, days, shifts)<<endl;
-				*aux=1;
-			}*/			
+			backjump=false;			
 		}else if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && (*aux!=0)){
 			if(!backjump){
 				aux++;
@@ -30,6 +26,10 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				if (*aux<shifts-1){
 					(*aux)++;
 					backjump=false;
+					if (max_days(vectr, rango_total, nurses, days, shifts)!=0){
+						*aux=shifts;
+						aux++;
+					}
 				}else if((*aux)==shifts-1){
 					(*aux)=0;
 					aux--;
