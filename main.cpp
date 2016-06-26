@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <ctime>
+#include <math.h>
 #include "rangosDias.h"
 #include "diasLibres.h"
 #include "cobertura.h"
@@ -148,12 +149,13 @@ int main(int argc, char* argv[])
 		variables[i]=1;
 	}
 	*/
+	std::vector<std::vector<int> > vars;
 	bool cobertura_actual=revisar_cobertura(min_nurses2, variables, days, shifts, nurses);
 		//variables[0]=4;
- 	std::vector<int> solucion=advancer(variables, days, shifts, nurses, min_nurses2, rango_dias_totales, rango_dias_consecutivos, 0);
+ 	std::vector<int> solucion=advancer(variables, days, shifts, nurses, min_nurses2, rango_dias_totales, rango_dias_consecutivos, 0, vars);
  	std::clock_t stop_s=clock();
- 	for (int j=0; j<solucion.size(); j++){
-		cout << solucion[j] <<" ";
+ 	for (int j=0; j<vars[vars.size()-1].size(); j++){
+		cout << vars[vars.size()-1][j] <<" ";
 		if ((j+1)%nurses==0){
 			cout << endl;
 		}
