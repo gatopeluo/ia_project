@@ -6,6 +6,7 @@
 #include <vector>
 #include <ctime>
 #include <math.h>
+#include "costoSolucion.h"
 #include "rangosDias.h"
 #include "diasLibres.h"
 #include "cobertura.h"

@@ -17,7 +17,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 			cout << vectr[j] <<" ";
 		}*/
 		//cout<<endl;
-		if (p>1000) aux=vectr.end();
+		if (solsUnicas(vectr, soluciones)) aux=vectr.end();
 		if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && (*aux==0)){
 			*aux=shifts;
 			backjump=false;			
@@ -55,6 +55,10 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 			}
 		}
 		if(aux==fin){
+			if ((*aux==0)){
+				*aux=shifts;
+				backjump=false;			
+			}
 			if (*aux<shifts-1){
 				backjump=true;
 				if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && min_days(vectr, rango_total, nurses, days, shifts)==0){
