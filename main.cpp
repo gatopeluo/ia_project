@@ -161,6 +161,6 @@ int main(int argc, char* argv[])
 		}
 	}
 	cout << "time: " << (stop_s - start_s)/double(CLOCKS_PER_SEC) << endl;
-    cout << vars.size(); <<endl;
+    cout << vars.size() <<endl;
     return 0;
 }
