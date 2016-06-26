@@ -8,7 +8,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 	int act_pos=0;
 	std::vector<int> variables;
 	variables.reserve(nurses*days+1);
-	int p=1000;
+	int p=0;
 	for(int i=days*nurses; i>position; i--){
 		vectr[i]=0;
 	}
@@ -17,7 +17,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 			cout << vectr[j] <<" ";
 		}*/
 		//cout<<endl;
-		if (soluciones.size()>p) aux=vectr.end();
+		if (p>1000) aux=vectr.end();
 		if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && (*aux==0)){
 			*aux=shifts;
 			backjump=false;			
@@ -59,10 +59,12 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				backjump=true;
 				if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && min_days(vectr, rango_total, nurses, days, shifts)==0){
 					soluciones.push_back(vectr);
+					p++;
 				}
 			}else if((*aux)==shifts-1){
 				if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && min_days(vectr, rango_total, nurses, days, shifts)==0){
 					soluciones.push_back(vectr);
+					p++;
 				}
 				(*aux)=0;
 				aux--;
@@ -71,6 +73,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				(*aux)=1;
 				if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && min_days(vectr, rango_total, nurses, days, shifts)==0){
 					soluciones.push_back(vectr);
+					p++;
 				}
 				backjump=true;
 			}
