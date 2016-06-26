@@ -67,6 +67,9 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				backjump=false;
 				//cout<<"aumenta <3, bj false"<<endl;
 			}else if((*aux)==(shifts-1) ){
+				if (aux==vectr.begin()){
+						return variables;
+				}
 				(*aux)=0;
 				aux--;
 				backjump=true;
