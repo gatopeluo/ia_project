@@ -160,6 +160,18 @@ int main(int argc, char* argv[])
 			cout << endl;
 		}
 	}
+	for (int j=0; j<vars[vars.size()-30].size(); j++){
+		cout << vars[vars.size()-30][j] <<" ";
+		if ((j+1)%nurses==0){
+			cout << endl;
+		}
+	}
+	for (int j=0; j<vars[vars.size()-60].size(); j++){
+		cout << vars[vars.size()-60][j] <<" ";
+		if ((j+1)%nurses==0){
+			cout << endl;
+		}
+	}
 	cout << "time: " << (stop_s - start_s)/double(CLOCKS_PER_SEC) << endl;
     cout << vars.size() <<endl;
     return 0;
