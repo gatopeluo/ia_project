@@ -9,49 +9,68 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 	std::vector<int> variables;
 	variables.reserve(nurses*days+1);
 	int p=0;
+	int count=0;
 	for(int i=days*nurses; i>position; i--){
 		vectr[i]=0;
 	}
 	while(aux!=vectr.end()){
-		/*for (int j=0; j<nurses*days; j++){
-			cout << vectr[j] <<" ";
-		}*/
-		//cout<<endl;
+		//if (count>3000000){
+			/*for (int j=0; j<nurses*days; j++){
+				cout << vectr[j] <<" ";
+				if((j+1)%nurses==0){
+					cout<<endl;
+				}
+			}
+			cout<<endl;*/
+		//}
 		if (solsUnicas(vectr, soluciones)) aux=vectr.end();
 		if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && (*aux==0)){
 			*aux=shifts;
-			backjump=false;			
+			backjump=false;
+			//cout<<"0 a shifts, bj false"<<endl;		
 		}else if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && (*aux!=0)){
 			if(!backjump){
 				aux++;
-				backjump=false;	
+				backjump=false;
+				//cout<<"avanza, bj false"<<endl;	
 			} else {
-				if (*aux<shifts-1){
+				if (*aux<(shifts-1)){
 					(*aux)++;
 					backjump=false;
+					//cout<< (*aux) <<" aumenta <3, bj false"<<endl;
 					/*if (max_days(vectr, rango_total, nurses, days, shifts)!=0){
 						*aux=shifts;
 						aux++;
 					}*/
-				}else if((*aux)==shifts-1){
+				}else if((*aux)==(shifts-1)){
+					if (aux==vectr.begin()){
+						return variables;
+					}
 					(*aux)=0;
 					aux--;
 					backjump=true;
+					//cout<<"bj true, retrocede 1"<<endl;
 				}else if((*aux)==shifts){
 					(*aux)=1;
 					backjump=false;
+					//cout<<"de 4 a 1, bj false"<<endl;
 				}
 			}
 
 		}else if (!revisar_cobertura(cobertura, vectr, days, shifts, nurses)){
 			if (*aux==shifts){
 				(*aux)=1;
-			}else if((*aux)<shifts-1){
+				backjump=false;
+				//cout<<"de 4 a 1, bj false"<<endl;
+			}else if((*aux)<(shifts-1) ){
 				(*aux)++;
-			}else if((*aux)==shifts-1){
+				backjump=false;
+				//cout<<"aumenta <3, bj false"<<endl;
+			}else if((*aux)==(shifts-1) ){
 				(*aux)=0;
 				aux--;
 				backjump=true;
+				//cout<<"==3 pasa a 0, bj true"<<endl;
 			}
 		}
 		if(aux==fin){
@@ -59,13 +78,13 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				*aux=shifts;
 				backjump=false;			
 			}
-			if (*aux<shifts-1){
+			if (*aux<(shifts-1) ){
 				backjump=true;
 				if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && min_days(vectr, rango_total, nurses, days, shifts)==0){
 					soluciones.push_back(vectr);
 					p++;
 				}
-			}else if((*aux)==shifts-1){
+			}else if((*aux)==(shifts-1) ){
 				if (revisar_cobertura(cobertura, vectr, days, shifts, nurses) && min_days(vectr, rango_total, nurses, days, shifts)==0){
 					soluciones.push_back(vectr);
 					p++;
@@ -82,7 +101,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				backjump=true;
 			}
 		}
-		if ((clock()-start)/double(CLOCKS_PER_SEC)>5*60){
+		if ((clock()-start)/double(CLOCKS_PER_SEC)>60*60){
 				return variables;
 		} else if(aux == fin){
 			if (min_days(vectr, rango_total, nurses, days, shifts)!=0){
@@ -106,6 +125,7 @@ std::vector<int> advancer(std::vector<int> &vectr, int days, int shifts, int nur
 				}
 			}
 		}
+		count++;
 		/*for (int j=0; j<nurses*days; j++){
 			cout << vectr[j] <<" ";
 		}
